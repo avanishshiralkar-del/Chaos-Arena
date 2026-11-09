@@ -98,7 +98,7 @@
           <label>Teams<select id="teamCount" aria-label="Number of teams"></select></label>
           <label>Bot difficulty<select id="botDifficulty" aria-label="Bot difficulty"></select></label>
           <label>Match length<select id="matchDuration"><option value="180">3 minutes (recommended)</option><option value="300">5 minutes</option><option value="600">10 minutes</option><option value="900">15 minutes</option></select></label>
-          <label>Lives per player<select id="matchLives"><option value="1">1 life</option><option value="3" selected>3 lives</option><option value="5">5 lives</option><option value="-1">Infinite lives</option></select></label>
+          <label>Lives per player<select id="matchLives"><option value="1">1 life</option><option value="3" selected>3 lives</option><option value="5">5 lives</option><option value="-1">Infinite</option></select></label>
         </div>
         <p id="botDifficultyDescription" class="map-description"></p>
         <div class="host-actions"><button id="customizeMapButton" class="ghost" type="button">Build a map</button><button id="createRoom" class="primary" type="button">Create room</button></div>
@@ -122,9 +122,9 @@
         <div class="help-grid">
           <article><h3>Movement & combat</h3><p><b>WASD / Arrow keys</b> move · <b>Mouse</b> aim · <b>Click / Space</b> shoot · <b>Shift</b> dash · <b>E</b> shield · <b>1–4</b> switch unlocked guns.</p></article>
           <article><h3>Survive</h3><p>Watch your health and lives. A shield protects you briefly after respawning. If eliminated, spectate living players; use <b>+</b>/<b>-</b> to zoom.</p></article>
-          <article><h3>Pickups & scoring</h3><p>Collect tokens for points, a heart for healing, a pink heart for an extra life, a cartoon gun to upgrade, or a blue invincibility star for brief protection. The giant golden star is worth 50 points and drops when its carrier is eliminated.</p></article>
+          <article><h3>Pickups & scoring</h3><p>Collect tokens for points, a heart for healing, a pink heart for an extra life, a cartoon gun to upgrade, or a blue invincibility star for brief protection.</p></article>
           <article><h3>Arenas & teams</h3><p>The host chooses team count, bot skill, match length and lives. The arena is randomly selected from the map carousel when the match starts.</p></article>
-          <article><h3>Lobby & rooms</h3><p>Create a Firebase room, share its five-character code, and wait for friends to join. Only the host can start or pause the match; the host's game state is synced to every player.</p></article>
+          <article><h3>Lobby & rooms</h3><p>Create a Firebase room, share its five-character code, and wait for friends to join. Only the host can start or pause the match; the host's game state syncs to the room.</p></article>
           <article><h3>Account & progress</h3><p>Sign in with Google to save your profile and view the shared XP leaderboard. Cloud accounts require Firebase Authentication and a configured Realtime Database.</p></article>
         </div>
       </div>
@@ -133,7 +133,7 @@
     <section id="aboutScreen" class="hidden page-screen">
       <div class="page-panel narrow-panel">
         <header class="result-header"><div><div class="kicker">About Chaos Arena</div><h2>Made for mayhem</h2></div><button class="ghost backHome" type="button">Back</button></header>
-        <p class="lead">Chaos Arena is a browser-based top-down arena shooter built with HTML, CSS, JavaScript, and the Canvas API. Its themed maps, bots, pickups, and local map workshop are designed for quick, chaotic matches.</p>
+        <p class="lead">Chaos Arena is a browser-based top-down arena shooter built with HTML, CSS, JavaScript, and the Canvas API. Its themed maps, bots, pickups, and local map workshop are designed for quick, competitive matches.</p>
         <p class="map-description">Google sign-in, cloud XP, and friend lobbies use Firebase. The room host runs the match simulation and shares its state through Realtime Database.</p>
       </div>
     </section>
@@ -196,7 +196,14 @@
             <span>SHOP TOKENS<strong id="accountTokens">0</strong></span>
           </div>
           <section class="shop-section">
-            <div class="shop-heading"><div><h3>Player shop</h3><p id="tokenAllowance">Earn 10 tokens per kill · 100 tokens max per day.</p><p class="shop-note">Pulse is the free default gun. Sign in to save tokens and buy stronger guns here.</p></div><span class="shop-wallet">✦ <strong id="shopTokenBalance">0</strong></span></div>
+            <div class="shop-heading">
+              <div>
+                <h3>Player shop</h3>
+                <p id="tokenAllowance">Earn 10 tokens per kill · 100 tokens max per day.</p>
+                <p class="shop-note">Pulse is the free default gun. Sign in to unlock more gear.</p>
+              </div>
+              <span id="shopTokenBalance" class="shop-wallet">0</span>
+            </div>
             <div class="shop-category"><h4>Skins</h4><div id="skinShop" class="shop-grid"></div></div>
             <div class="shop-category"><h4>Guns</h4><div id="gunShop" class="shop-grid"></div></div>
           </section>
@@ -225,7 +232,7 @@
             <div class="kicker">Squad lobby</div>
             <div class="lobby-code" id="lobbyCodeText">ABCD1</div>
           </div>
-          <div class="lobby-header-actions"><button id="lobbyHamburger" class="hamburger" type="button" aria-label="Open lobby menu">☰</button><button id="copyRoom" class="ghost" type="button">Copy code</button></div>
+          <div class="lobby-header-actions"><button id="lobbyHamburger" class="hamburger" type="button" aria-label="Open lobby menu">☰</button><button id="copyRoom" class="ghost" type="button">Copy</button></div>
         </div>
 
         <div class="player-list" id="playerList"></div>
